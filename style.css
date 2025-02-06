@@ -1,0 +1,15 @@
+/* Apply the Lexend font */
+body {
+  margin: 0;
+  font-family: 'Lexend', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.centered-text {
+  font-size: 25px;
+  text-align: center;
+}
