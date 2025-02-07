@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lexend Font with Word Highlighting</title>
-  <!-- Google Fonts for Lexend -->
+  <title>Clickable Words with Audio and Playback</title>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
   <style>
     body {
@@ -69,11 +68,17 @@
       transition: background-color 0.2s ease;
     }
 
+    .clicked-highlight {
+      background-color: lightblue;
+    }
+
     .section-heading {
       font-size: 22px;
       font-weight: bold;
       margin-top: 20px;
       text-align: left;
+      width: 100%;
+      max-width: 600px;
     }
 
     .audio-button {
@@ -97,6 +102,8 @@
       font-size: 20px;
       line-height: 1.6;
       text-align: left;
+      width: 100%;
+      max-width: 600px;
     }
 
     .answers {
@@ -117,7 +124,9 @@
     .word-list {
       margin-top: 20px;
       width: 100%;
+      max-width: 600px;
       position: relative;
+      text-align: left;
     }
 
     .word-item {
@@ -132,20 +141,6 @@
       width: 50px;
       height: 50px;
       object-fit: cover;
-    }
-
-    .line {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 0;
-      pointer-events: none;
-    }
-
-    line {
-      stroke: black;
-      stroke-width: 2;
     }
   </style>
 </head>
@@ -162,19 +157,49 @@
     <div class="sentence-container">
       <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" alt="Jan Image" class="sentence-image">
       <div class="sentence" data-sentence="Sam, have you ever seen a panda in a zoo?">
-        Sam, have you ever seen a panda in a zoo?
+        <span class="word" onclick="readWord(this)">Sam</span>,
+        <span class="word" onclick="readWord(this)">have</span>
+        <span class="word" onclick="readWord(this)">you</span>
+        <span class="word" onclick="readWord(this)">ever</span>
+        <span class="word" onclick="readWord(this)">seen</span>
+        <span class="word" onclick="readWord(this)">a</span>
+        <span class="word" onclick="readWord(this)">panda</span>
+        <span class="word" onclick="readWord(this)">in</span>
+        <span class="word" onclick="readWord(this)">a</span>
+        <span class="word" onclick="readWord(this)">zoo</span>?
       </div>
     </div>
     <div class="follow-up-container">
       <div class="sentence" data-sentence="Yes, I have, but I have never seen a panda in the forest.">
-        Yes, I have, but I have never seen a panda in the forest.
+        <span class="word" onclick="readWord(this)">Yes</span>,
+        <span class="word" onclick="readWord(this)">I</span>
+        <span class="word" onclick="readWord(this)">have</span>,
+        <span class="word" onclick="readWord(this)">but</span>
+        <span class="word" onclick="readWord(this)">I</span>
+        <span class="word" onclick="readWord(this)">have</span>
+        <span class="word" onclick="readWord(this)">never</span>
+        <span class="word" onclick="readWord(this)">seen</span>
+        <span class="word" onclick="readWord(this)">a</span>
+        <span class="word" onclick="readWord(this)">panda</span>
+        <span class="word" onclick="readWord(this)">in</span>
+        <span class="word" onclick="readWord(this)">the</span>
+        <span class="word" onclick="readWord(this)">forest</span>.
       </div>
       <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/sam.png" alt="Sam Image" class="follow-up-image">
     </div>
     <div class="final-container">
       <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" alt="Jan Image" class="final-image">
       <div class="sentence" data-sentence="Me too! I want to see one in the wild.">
-        Me too! I want to see one in the wild.
+        <span class="word" onclick="readWord(this)">Me</span>
+        <span class="word" onclick="readWord(this)">too</span>!
+        <span class="word" onclick="readWord(this)">I</span>
+        <span class="word" onclick="readWord(this)">want</span>
+        <span class="word" onclick="readWord(this)">to</span>
+        <span class="word" onclick="readWord(this)">see</span>
+        <span class="word" onclick="readWord(this)">one</span>
+        <span class="word" onclick="readWord(this)">in</span>
+        <span class="word" onclick="readWord(this)">the</span>
+        <span class="word" onclick="readWord(this)">wild</span>.
       </div>
     </div>
   </div>
@@ -238,7 +263,6 @@
       let sentenceBoundaries = [];
       let currentSentenceIndex = 0;
 
-      // Prepare all words and sentence boundaries
       sentences.forEach((sentence, index) => {
         const words = sentence.dataset.sentence.split(" ");
         sentenceBoundaries.push({ start: allWords.length, end: allWords.length + words.length });
@@ -250,10 +274,16 @@
           const words = sentence.dataset.sentence.split(" ");
           if (index === currentSentenceIndex) {
             sentence.innerHTML = words
-              .map((word, i) => (i === wordIndex - sentenceBoundaries[index].start ? `<span class="highlight">${word}</span>` : word))
+              .map((word, i) =>
+                i === wordIndex - sentenceBoundaries[index].start
+                  ? `<span class="highlight word" onclick="readWord(this)">${word}</span>`
+                  : `<span class="word" onclick="readWord(this)">${word}</span>`
+              )
               .join(" ");
           } else {
-            sentence.innerHTML = words.join(" ");
+            sentence.innerHTML = words
+              .map(word => `<span class="word" onclick="readWord(this)">${word}</span>`)
+              .join(" ");
           }
         });
       };
@@ -270,13 +300,31 @@
       };
 
       speech.onend = () => {
-        sentences.forEach(sentence => sentence.innerHTML = sentence.dataset.sentence);
+        sentences.forEach(sentence => {
+          const words = sentence.dataset.sentence.split(" ");
+          sentence.innerHTML = words
+            .map(word => `<span class="word" onclick="readWord(this)">${word}</span>`)
+            .join(" ");
+        });
       };
 
       speech.lang = "en-US";
       speech.rate = 1;
       speech.pitch = 1;
       window.speechSynthesis.speak(speech);
+    }
+
+    function readWord(element) {
+      const word = element.innerText;
+      const speech = new SpeechSynthesisUtterance(word === "I" ? "eye" : word);
+      speech.lang = "en-US";
+      speech.rate = 1;
+      speech.pitch = 1;
+      element.classList.add("clicked-highlight");
+      window.speechSynthesis.speak(speech);
+      speech.onend = () => {
+        element.classList.remove("clicked-highlight");
+      };
     }
   </script>
 </body>
