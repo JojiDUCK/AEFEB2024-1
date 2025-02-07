@@ -57,7 +57,7 @@
       width: 40px; /* Size of the image */
       height: 40px;
       margin-right: 10px; /* Space between the image and the text */
-      object-fit: cover; /* Ensure image scaling is consistent */
+      object-fit: cover; /* Ensure images are not distorted */
     }
 
     .sentence, .follow-up-sentence, .final-sentence {
@@ -65,7 +65,7 @@
       text-align: left; /* Align text to the left */
     }
 
-    .question-heading {
+    .section-heading {
       font-size: 22px; /* Slightly larger font size than the sentences */
       font-weight: bold; /* Make it bold */
       margin-top: 20px; /* Add space above the heading */
@@ -85,6 +85,9 @@
 
     .answers {
       margin-left: 20px; /* Indent the answers for better readability */
+      display: flex; /* Use Flexbox to align answers */
+      justify-content: space-between; /* Evenly space answers */
+      gap: 20px; /* Add space between the answers */
     }
 
     .answers span {
@@ -99,6 +102,25 @@
 
     .green-text {
       color: green; /* Make text green */
+    }
+
+    .word-list {
+      margin-top: 20px; /* Add space above the word list */
+      width: 100%; /* Full width to position text and images */
+    }
+
+    .word-item {
+      display: flex;
+      justify-content: space-between; /* Align text to the left and image to the right */
+      align-items: center; /* Vertically align text and image */
+      margin-bottom: 30px; /* Add larger space between items */
+      font-size: 20px; /* Match font size of sentences */
+    }
+
+    .word-item img {
+      width: 50px; /* Set the image width */
+      height: 50px; /* Set the image height */
+      object-fit: cover; /* Ensure images are not distorted */
     }
   </style>
 </head>
@@ -144,7 +166,7 @@
     </div>
 
     <!-- Question Heading -->
-    <div class="question-heading">
+    <div class="section-heading">
       Answer the questions.
     </div>
 
@@ -154,9 +176,9 @@
       <div class="question">
         1. What has Sam seen?
         <div class="answers">
-          <span>a.</span> <span class="green-text">panda</span> &nbsp;&nbsp; 
-          <span>b.</span> dinosaur &nbsp;&nbsp; 
-          <span>c.</span> dog
+          <span>a. <span class="green-text">panda</span></span>
+          <span>b. dinosaur</span>
+          <span>c. dog</span>
         </div>
         <div class="explanation">
           Sam has seen a panda.
@@ -167,13 +189,38 @@
       <div class="question">
         2. What has Jan never seen?
         <div class="answers">
-          <span>a.</span> <span class="green-text">a panda in the wild</span> &nbsp;&nbsp; 
-          <span>b.</span> a cat in the wild &nbsp;&nbsp; 
-          <span>c.</span> a rabbit in the wild
+          <span>a. <span class="green-text">a panda in the wild</span></span>
+          <span>b. a cat in the wild</span>
+          <span>c. a rabbit in the wild</span>
         </div>
         <div class="explanation">
           Jan has never seen a panda in the wild.
         </div>
+      </div>
+    </div>
+
+    <!-- New Section Heading -->
+    <div class="section-heading">
+      Unscramble, spell, and match.
+    </div>
+
+    <!-- Word List -->
+    <div class="word-list">
+      <div class="word-item">
+        <div>dog</div>
+        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/snake.png" alt="Snake">
+      </div>
+      <div class="word-item">
+        <div>snake</div>
+        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/tiger.png" alt="Tiger">
+      </div>
+      <div class="word-item">
+        <div>tiger</div>
+        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/mantis.png" alt="Mantis">
+      </div>
+      <div class="word-item">
+        <div>mantis</div>
+        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/dog.png" alt="Dog">
       </div>
     </div>
   </div>
