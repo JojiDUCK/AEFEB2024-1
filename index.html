@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lexend Font with Images</title>
+  <title>Lexend Font with Layout Changes</title>
   <!-- Google Fonts for Lexend -->
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
   <style>
@@ -13,15 +13,16 @@
       font-family: 'Lexend', sans-serif; /* Apply Lexend font */
       background-color: white; /* Set background color to white */
       display: flex;
-      justify-content: center; /* Center horizontally */
-      align-items: flex-start; /* Align content at the top */
-      padding-top: 20px; /* Add space at the top */
-      height: 100vh;
+      flex-direction: column; /* Stack sections vertically */
+      align-items: center; /* Center horizontally */
+      padding: 20px; /* Add padding for consistent spacing */
     }
 
-    .content-container {
+    .header-container {
       display: flex;
       align-items: center; /* Vertically align the images and text */
+      justify-content: center; /* Center the content horizontally */
+      margin-bottom: 20px; /* Add spacing below the header */
     }
 
     .centered-text {
@@ -35,22 +36,88 @@
       height: 50px; /* Set image height */
       object-fit: cover; /* Ensure images are not distorted */
     }
+
+    .content-section {
+      width: 100%; /* Take full width */
+      max-width: 600px; /* Limit the width for readability */
+      display: flex;
+      flex-direction: column; /* Stack the sentences and images vertically */
+      align-items: flex-start; /* Align everything to the left */
+    }
+
+    .sentence-container,
+    .follow-up-container,
+    .final-container {
+      display: flex;
+      align-items: center; /* Align image and text vertically */
+      margin-bottom: 10px; /* Add space between sections */
+    }
+
+    .sentence-image, .follow-up-image, .final-image {
+      width: 40px; /* Size of the image */
+      height: 40px;
+      margin-right: 10px; /* Space between the image and the text */
+      object-fit: cover; /* Ensure image scaling is consistent */
+    }
+
+    .sentence, .follow-up-sentence, .final-sentence {
+      font-size: 20px; /* Font size for sentences */
+      text-align: left; /* Align text to the left */
+    }
+
+    .question-heading {
+      font-size: 22px; /* Slightly larger font size than the sentences */
+      font-weight: bold; /* Make it bold */
+      margin-top: 20px; /* Add space above the heading */
+      text-align: left; /* Align to the left */
+    }
   </style>
 </head>
 <body>
-  <div class="content-container">
-    <!-- Left Image -->
-    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/Screenshot%202025-02-06%20at%2017.42.33.png" 
+  <!-- Header Section with Centered Text and Images -->
+  <div class="header-container">
+    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/lion.png" 
          alt="Left Image" class="image">
-
-    <!-- Centered Text -->
     <div class="centered-text">
       Have you...
     </div>
-
-    <!-- Right Image -->
-    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/Screenshot%202025-02-06%20at%2017.42.26.png" 
+    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/panda.png" 
          alt="Right Image" class="image">
+  </div>
+
+  <!-- Left-Aligned Content -->
+  <div class="content-section">
+    <!-- Sentence with Image to the Left -->
+    <div class="sentence-container">
+      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" 
+           alt="Sentence Image" class="sentence-image">
+      <div class="sentence">
+        Sam, have you ever seen a panda in a zoo?
+      </div>
+    </div>
+
+    <!-- Follow-up Sentence with Image to the Right -->
+    <div class="follow-up-container">
+      <div class="follow-up-sentence">
+        Yes, I have, but I have never seen a panda in the forest.
+      </div>
+      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/sam.png" 
+           alt="Sam Image" class="follow-up-image">
+    </div>
+
+    <!-- Final Sentence with Image to the Left -->
+    <div class="final-container">
+      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" 
+           alt="Jan Image" class="final-image">
+      <div class="final-sentence">
+        Me too! I want to see one in the wild.
+      </div>
+    </div>
+
+    <!-- Question Heading -->
+    <div class="question-heading">
+      Answer the questions.
+    </div>
   </div>
 </body>
 </html>
