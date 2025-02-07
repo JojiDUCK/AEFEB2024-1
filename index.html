@@ -3,176 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lexend Font with Layout Changes</title>
+  <title>Lexend Font with Word Highlighting</title>
   <!-- Google Fonts for Lexend -->
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
   <style>
-    /* CSS for styling */
     body {
       margin: 0;
-      font-family: 'Lexend', sans-serif; /* Apply Lexend font */
-      background-color: white; /* Set background color to white */
+      font-family: 'Lexend', sans-serif;
+      background-color: white;
       display: flex;
-      flex-direction: column; /* Stack sections vertically */
-      align-items: center; /* Center horizontally */
-      padding: 20px; /* Add padding for consistent spacing */
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
 
     .header-container {
       display: flex;
-      align-items: center; /* Vertically align the images and text */
-      justify-content: center; /* Center the content horizontally */
-      margin-bottom: 20px; /* Add spacing below the header */
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
     }
 
     .centered-text {
-      font-size: 25px; /* Set font size */
+      font-size: 25px;
       text-align: center;
-      margin: 0 20px; /* Add space between the images and text */
+      margin: 0 20px;
     }
 
     .image {
-      width: 50px; /* Set image width */
-      height: 50px; /* Set image height */
-      object-fit: cover; /* Ensure images are not distorted */
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
     }
 
     .content-section {
-      width: 100%; /* Take full width */
-      max-width: 600px; /* Limit the width for readability */
+      width: 100%;
+      max-width: 600px;
       display: flex;
-      flex-direction: column; /* Stack the sentences and images vertically */
-      align-items: flex-start; /* Align everything to the left */
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .sentence-container,
     .follow-up-container,
     .final-container {
       display: flex;
-      align-items: center; /* Align image and text vertically */
-      margin-bottom: 10px; /* Add space between sections */
+      align-items: center;
+      margin-bottom: 10px;
     }
 
     .sentence-image, .follow-up-image, .final-image {
-      width: 40px; /* Size of the image */
+      width: 40px;
       height: 40px;
-      margin-right: 10px; /* Space between the image and the text */
-      object-fit: cover; /* Ensure images are not distorted */
+      margin-right: 10px;
+      object-fit: cover;
     }
 
     .sentence, .follow-up-sentence, .final-sentence {
-      font-size: 20px; /* Font size for sentences */
-      text-align: left; /* Align text to the left */
+      font-size: 20px;
+      text-align: left;
+    }
+
+    .highlight {
+      background-color: yellow;
+      transition: background-color 0.2s ease;
     }
 
     .section-heading {
-      font-size: 22px; /* Slightly larger font size than the sentences */
-      font-weight: bold; /* Make it bold */
-      margin-top: 20px; /* Add space above the heading */
-      text-align: left; /* Align to the left */
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .audio-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      align-self: center;
+    }
+
+    .audio-button:hover {
+      background-color: #45a049;
     }
 
     .question-block {
-      margin-top: 20px; /* Add space above the questions */
-      font-size: 20px; /* Match the font size of the sentences */
-      line-height: 1.6; /* Adjust line height for readability */
-      text-align: left; /* Align the questions and answers to the left */
-    }
-
-    .question {
-      margin-bottom: 20px; /* Add space below each question */
+      margin-top: 20px;
+      font-size: 20px;
+      line-height: 1.6;
+      text-align: left;
     }
 
     .answers {
-      margin-left: 20px; /* Indent the answers for better readability */
-      display: flex; /* Use Flexbox to align answers */
-      justify-content: space-between; /* Evenly space answers */
-      gap: 20px; /* Add space between the answers */
+      margin-left: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
     }
 
     .answers span {
-      font-weight: bold; /* Bold a., b., c. */
-    }
-
-    .explanation {
-      margin-top: 15px; /* Add space below the options */
-      font-size: 21px; /* Slightly larger than the options */
-      font-style: italic; /* Optional: Makes it stand out */
+      font-weight: bold;
     }
 
     .green-text {
-      color: green; /* Make text green */
+      color: green;
     }
 
     .word-list {
-      margin-top: 20px; /* Add space above the word list */
-      width: 100%; /* Full width to position text and images */
+      margin-top: 20px;
+      width: 100%;
+      position: relative;
     }
 
     .word-item {
       display: flex;
-      justify-content: space-between; /* Align text to the left and image to the right */
-      align-items: center; /* Vertically align text and image */
-      margin-bottom: 30px; /* Add larger space between items */
-      font-size: 20px; /* Match font size of sentences */
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      font-size: 20px;
     }
 
     .word-item img {
-      width: 50px; /* Set the image width */
-      height: 50px; /* Set the image height */
-      object-fit: cover; /* Ensure images are not distorted */
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+
+    .line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 0;
+      pointer-events: none;
+    }
+
+    line {
+      stroke: black;
+      stroke-width: 2;
     }
   </style>
 </head>
 <body>
   <!-- Header Section with Centered Text and Images -->
   <div class="header-container">
-    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/lion.png" 
-         alt="Left Image" class="image">
-    <div class="centered-text">
-      Have you...
-    </div>
-    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/panda.png" 
-         alt="Right Image" class="image">
+    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/lion.png" alt="Left Image" class="image">
+    <div class="centered-text">Have you...</div>
+    <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/panda.png" alt="Right Image" class="image">
   </div>
 
   <!-- Left-Aligned Content -->
   <div class="content-section">
-    <!-- Sentence with Image to the Left -->
-    <div class="sentence-container">
-      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" 
-           alt="Sentence Image" class="sentence-image">
-      <div class="sentence">
-        Sam, have you ever seen a panda in a zoo?
+    <!-- Sentence Section -->
+    <div id="text-to-read">
+      <div class="sentence-container">
+        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" alt="Jan Image" class="sentence-image">
+        <span>Sam, have you ever seen a panda in a zoo?</span>
+      </div>
+      <div class="follow-up-container">
+        <span>Yes, I have, but I have never seen a panda in the forest.</span>
+        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/sam.png" alt="Sam Image" class="follow-up-image">
+      </div>
+      <div class="final-container">
+        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" alt="Jan Image" class="final-image">
+        <span>Me too! I want to see one in the wild.</span>
       </div>
     </div>
 
-    <!-- Follow-up Sentence with Image to the Right -->
-    <div class="follow-up-container">
-      <div class="follow-up-sentence">
-        Yes, I have, but I have never seen a panda in the forest.
-      </div>
-      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/sam.png" 
-           alt="Sam Image" class="follow-up-image">
-    </div>
+    <!-- Audio Button -->
+    <button class="audio-button" onclick="readAndHighlight()">Play Audio</button>
 
-    <!-- Final Sentence with Image to the Left -->
-    <div class="final-container">
-      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/jan.png" 
-           alt="Jan Image" class="final-image">
-      <div class="final-sentence">
-        Me too! I want to see one in the wild.
-      </div>
-    </div>
-
-    <!-- Question Heading -->
-    <div class="section-heading">
-      Answer the questions.
-    </div>
-
-    <!-- Multiple Choice Questions -->
+    <!-- Question Section -->
+    <div class="section-heading">Answer the questions.</div>
     <div class="question-block">
-      <!-- Question 1 -->
       <div class="question">
         1. What has Sam seen?
         <div class="answers">
@@ -180,12 +188,8 @@
           <span>b. dinosaur</span>
           <span>c. dog</span>
         </div>
-        <div class="explanation">
-          Sam has seen a panda.
-        </div>
+        <div class="explanation">Sam has seen a panda.</div>
       </div>
-
-      <!-- Question 2 -->
       <div class="question">
         2. What has Jan never seen?
         <div class="answers">
@@ -193,36 +197,68 @@
           <span>b. a cat in the wild</span>
           <span>c. a rabbit in the wild</span>
         </div>
-        <div class="explanation">
-          Jan has never seen a panda in the wild.
-        </div>
-      </div>
-    </div>
-
-    <!-- New Section Heading -->
-    <div class="section-heading">
-      Unscramble, spell, and match.
-    </div>
-
-    <!-- Word List -->
-    <div class="word-list">
-      <div class="word-item">
-        <div>dog</div>
-        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/snake.png" alt="Snake">
-      </div>
-      <div class="word-item">
-        <div>snake</div>
-        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/tiger.png" alt="Tiger">
-      </div>
-      <div class="word-item">
-        <div>tiger</div>
-        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/mantis.png" alt="Mantis">
-      </div>
-      <div class="word-item">
-        <div>mantis</div>
-        <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/dog.png" alt="Dog">
+        <div class="explanation">Jan has never seen a panda in the wild.</div>
       </div>
     </div>
   </div>
+
+  <script>
+    // Text-to-Speech with Highlighting
+    function readAndHighlight() {
+      const textContainer = document.getElementById("text-to-read");
+      const sentences = Array.from(textContainer.querySelectorAll("span"));
+
+      let sentenceIndex = 0;
+      let wordIndex = 0;
+
+      // Function to highlight the current word
+      const highlightWord = () => {
+        sentences.forEach((sentence, index) => {
+          const words = sentence.innerText.split(" ");
+          sentence.innerHTML = words
+            .map((word, i) =>
+              index === sentenceIndex && i === wordIndex ? `<span class="highlight">${word}</span>` : word
+            )
+            .join(" ");
+        });
+      };
+
+      // Prepare SpeechSynthesisUtterance
+      const speech = new SpeechSynthesisUtterance();
+      speech.lang = "en-US";
+      speech.rate = 1;
+      speech.pitch = 1;
+
+      // Break sentences into words for highlighting
+      const fullText = sentences.map(sentence => sentence.innerText);
+      const wordCounts = fullText.map(sentence => sentence.split(" ").length);
+
+      speech.text = fullText.join(" ");
+
+      // Highlight words as they are spoken
+      speech.onboundary = (event) => {
+        if (event.name === "word") {
+          wordIndex++;
+          if (wordIndex >= wordCounts[sentenceIndex]) {
+            wordIndex = 0;
+            sentenceIndex++;
+          }
+          if (sentenceIndex < sentences.length) {
+            highlightWord();
+          }
+        }
+      };
+
+      // Reset highlights when finished
+      speech.onend = () => {
+        sentences.forEach(sentence => {
+          sentence.innerHTML = sentence.innerText;
+        });
+      };
+
+      // Start speaking
+      window.speechSynthesis.speak(speech);
+    }
+  </script>
 </body>
 </html>
