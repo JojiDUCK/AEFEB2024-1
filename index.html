@@ -71,6 +71,35 @@
       margin-top: 20px; /* Add space above the heading */
       text-align: left; /* Align to the left */
     }
+
+    .question-block {
+      margin-top: 20px; /* Add space above the questions */
+      font-size: 20px; /* Match the font size of the sentences */
+      line-height: 1.6; /* Adjust line height for readability */
+      text-align: left; /* Align the questions and answers to the left */
+    }
+
+    .question {
+      margin-bottom: 20px; /* Add space below each question */
+    }
+
+    .answers {
+      margin-left: 20px; /* Indent the answers for better readability */
+    }
+
+    .answers span {
+      font-weight: bold; /* Bold a., b., c. */
+    }
+
+    .explanation {
+      margin-top: 15px; /* Add space below the options */
+      font-size: 21px; /* Slightly larger than the options */
+      font-style: italic; /* Optional: Makes it stand out */
+    }
+
+    .green-text {
+      color: green; /* Make text green */
+    }
   </style>
 </head>
 <body>
@@ -117,6 +146,35 @@
     <!-- Question Heading -->
     <div class="question-heading">
       Answer the questions.
+    </div>
+
+    <!-- Multiple Choice Questions -->
+    <div class="question-block">
+      <!-- Question 1 -->
+      <div class="question">
+        1. What has Sam seen?
+        <div class="answers">
+          <span>a.</span> <span class="green-text">panda</span> &nbsp;&nbsp; 
+          <span>b.</span> dinosaur &nbsp;&nbsp; 
+          <span>c.</span> dog
+        </div>
+        <div class="explanation">
+          Sam has seen a panda.
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question">
+        2. What has Jan never seen?
+        <div class="answers">
+          <span>a.</span> <span class="green-text">a panda in the wild</span> &nbsp;&nbsp; 
+          <span>b.</span> a cat in the wild &nbsp;&nbsp; 
+          <span>c.</span> a rabbit in the wild
+        </div>
+        <div class="explanation">
+          Jan has never seen a panda in the wild.
+        </div>
+      </div>
     </div>
   </div>
 </body>
