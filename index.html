@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clickable Words with Audio and Playback</title>
+  <title>Combined Version</title>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
   <style>
     body {
@@ -27,12 +27,6 @@
       font-size: 25px;
       text-align: center;
       margin: 0 20px;
-    }
-
-    .image {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
     }
 
     .content-section {
@@ -70,6 +64,7 @@
 
     .clicked-highlight {
       background-color: lightblue;
+      transition: background-color 0.3s ease;
     }
 
     .section-heading {
@@ -90,7 +85,9 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      align-self: center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .audio-button:hover {
@@ -141,6 +138,11 @@
       width: 50px;
       height: 50px;
       object-fit: cover;
+      cursor: pointer;
+    }
+
+    .word-item div {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -209,122 +211,150 @@
 
   <!-- Question Section -->
   <div class="section-heading">Answer the questions.</div>
-  <div class="question-block">
+  <div class="question-block" id="answer-section">
     <div class="question">
-      1. What has Sam seen?
+      1. <span class="word" onclick="readWord(this)">What</span> <span class="word" onclick="readWord(this)">has</span> <span class="word" onclick="readWord(this)">Sam</span> <span class="word" onclick="readWord(this)">seen</span>?
       <div class="answers">
-        <span>a. <span class="green-text">panda</span></span>
-        <span>b. dinosaur</span>
-        <span>c. dog</span>
+        <span>a. <span class="word green-text" onclick="readWord(this)">panda</span></span>
+        <span>b. <span class="word" onclick="readWord(this)">dinosaur</span></span>
+        <span>c. <span class="word" onclick="readWord(this)">dog</span></span>
       </div>
-      <div class="explanation">Sam has seen a panda.</div>
+      <div class="explanation"><span class="word" onclick="readWord(this)">Sam</span> <span class="word" onclick="readWord(this)">has</span> <span class="word" onclick="readWord(this)">seen</span> <span class="word green-text" onclick="readWord(this)">a</span> <span class="word green-text" onclick="readWord(this)">panda</span>.</div>
     </div>
     <div class="question">
-      2. What has Jan never seen?
+      2. <span class="word" onclick="readWord(this)">What</span> <span class="word" onclick="readWord(this)">has</span> <span class="word" onclick="readWord(this)">Jan</span> <span class="word" onclick="readWord(this)">never</span> <span class="word" onclick="readWord(this)">seen</span>?
       <div class="answers">
-        <span>a. <span class="green-text">a panda in the wild</span></span>
-        <span>b. a cat in the wild</span>
-        <span>c. a rabbit in the wild</span>
+        <span>a. <span class="word green-text" onclick="readWord(this)">a</span> <span class="word green-text" onclick="readWord(this)">panda</span> <span class="word green-text" onclick="readWord(this)">in</span> <span class="word green-text" onclick="readWord(this)">the</span> <span class="word green-text" onclick="readWord(this)">wild</span></span>
+        <span>b. <span class="word" onclick="readWord(this)">a</span> <span class="word" onclick="readWord(this)">cat</span> <span class="word" onclick="readWord(this)">in</span> <span class="word" onclick="readWord(this)">the</span> <span class="word" onclick="readWord(this)">wild</span></span>
+        <span>c. <span class="word" onclick="readWord(this)">a</span> <span class="word" onclick="readWord(this)">rabbit</span> <span class="word" onclick="readWord(this)">in</span> <span class="word" onclick="readWord(this)">the</span> <span class="word" onclick="readWord(this)">wild</span></span>
       </div>
-      <div class="explanation">Jan has never seen a panda in the wild.</div>
+      <div class="explanation"><span class="word" onclick="readWord(this)">Jan</span> <span class="word" onclick="readWord(this)">has</span> <span class="word" onclick="readWord(this)">never</span> <span class="word" onclick="readWord(this)">seen</span> <span class="word green-text" onclick="readWord(this)">a</span> <span class="word green-text" onclick="readWord(this)">panda</span> <span class="word green-text" onclick="readWord(this)">in</span> <span class="word green-text" onclick="readWord(this)">the</span> <span class="word green-text" onclick="readWord(this)">wild</span>.</div>
     </div>
   </div>
+
+  <!-- Play Audio Button -->
+  <button class="audio-button" onclick="playAnswerAudio()">Play Audio</button>
 
   <!-- Unscramble Section -->
   <div class="section-heading">Unscramble, spell, and match.</div>
   <div class="word-list">
     <div class="word-item">
-      <div>dog</div>
-      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/dog.png" alt="Dog">
+      <div onclick="readWord(this)">dog</div>
+      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/dog.png" alt="Dog" onclick="readWordImage('dog')">
     </div>
     <div class="word-item">
-      <div>snake</div>
-      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/snake.png" alt="Snake">
+      <div onclick="readWord(this)">snake</div>
+      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/snake.png" alt="Snake" onclick="readWordImage('snake')">
     </div>
     <div class="word-item">
-      <div>tiger</div>
-      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/tiger.png" alt="Tiger">
+      <div onclick="readWord(this)">tiger</div>
+      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/tiger.png" alt="Tiger" onclick="readWordImage('tiger')">
     </div>
     <div class="word-item">
-      <div>mantis</div>
-      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/mantis.png" alt="Mantis">
+      <div onclick="readWord(this)">mantis</div>
+      <img src="https://raw.githubusercontent.com/JojiDUCK/AEFEB2024-1/main/mantis.png" alt="Mantis" onclick="readWordImage('mantis')">
     </div>
   </div>
 
   <script>
+    let voices = [];
+    function loadVoices() {
+      voices = window.speechSynthesis.getVoices();
+    }
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+
     function readAndHighlight() {
-      const textContainer = document.getElementById("text-to-read");
-      const sentences = Array.from(textContainer.querySelectorAll(".sentence"));
-      const fullText = sentences.map(sentence => sentence.dataset.sentence).join(" ");
-      const speech = new SpeechSynthesisUtterance(fullText);
+      const sentences = Array.from(document.querySelectorAll(".sentence"));
+      const femaleVoice = voices.find(voice => voice.name === "Samantha");
+      const maleVoice = voices.find(voice => voice.name === "Aaron");
+      let sentenceIndex = 0;
 
-      let wordIndex = 0;
-      let allWords = [];
-      let sentenceBoundaries = [];
-      let currentSentenceIndex = 0;
-
-      sentences.forEach((sentence, index) => {
+      const highlightWords = (sentence, wordIndex) => {
         const words = sentence.dataset.sentence.split(" ");
-        sentenceBoundaries.push({ start: allWords.length, end: allWords.length + words.length });
-        allWords = allWords.concat(words);
-      });
-
-      const highlightWord = () => {
-        sentences.forEach((sentence, index) => {
-          const words = sentence.dataset.sentence.split(" ");
-          if (index === currentSentenceIndex) {
-            sentence.innerHTML = words
-              .map((word, i) =>
-                i === wordIndex - sentenceBoundaries[index].start
-                  ? `<span class="highlight word" onclick="readWord(this)">${word}</span>`
-                  : `<span class="word" onclick="readWord(this)">${word}</span>`
-              )
-              .join(" ");
-          } else {
-            sentence.innerHTML = words
-              .map(word => `<span class="word" onclick="readWord(this)">${word}</span>`)
-              .join(" ");
-          }
-        });
+        sentence.innerHTML = words
+          .map((word, idx) =>
+            idx === wordIndex
+              ? `<span class="highlight word" onclick="readWord(this)">${word}</span>`
+              : `<span class="word" onclick="readWord(this)">${word}</span>`
+          )
+          .join(" ");
       };
 
-      speech.onboundary = (event) => {
-        if (event.name === "word") {
-          highlightWord();
-          wordIndex++;
-          if (wordIndex >= sentenceBoundaries[currentSentenceIndex]?.end) {
-            currentSentenceIndex++;
-            wordIndex = sentenceBoundaries[currentSentenceIndex]?.start || wordIndex;
+      const speakSentence = () => {
+        if (sentenceIndex >= sentences.length) return;
+
+        const currentSentence = sentences[sentenceIndex];
+        const words = currentSentence.dataset.sentence.split(" ");
+        const speech = new SpeechSynthesisUtterance(currentSentence.dataset.sentence);
+
+        let wordIndex = 0;
+        speech.voice = sentenceIndex === 1 ? maleVoice : femaleVoice;
+
+        speech.onboundary = (event) => {
+          if (event.name === "word") {
+            highlightWords(currentSentence, wordIndex);
+            wordIndex++;
           }
+        };
+
+        speech.onend = () => {
+          currentSentence.innerHTML = words
+            .map(word => `<span class="word" onclick="readWord(this)">${word}</span>`)
+            .join(" ");
+          sentenceIndex++;
+          speakSentence();
+        };
+
+        window.speechSynthesis.speak(speech);
+      };
+
+      speakSentence();
+    }
+
+    function playAnswerAudio() {
+      const section = document.getElementById("answer-section");
+      const words = Array.from(section.querySelectorAll(".word, .green-text"));
+      const utterance = new SpeechSynthesisUtterance();
+      let wordIndex = 0;
+
+      utterance.text = words.map(word => word.innerText).join(" ");
+      utterance.lang = "en-US";
+      utterance.rate = 0.9;
+
+      utterance.onboundary = (event) => {
+        if (event.name === "word") {
+          words.forEach((word, index) => {
+            word.classList.toggle("highlight", index === wordIndex);
+          });
+          wordIndex++;
         }
       };
 
-      speech.onend = () => {
-        sentences.forEach(sentence => {
-          const words = sentence.dataset.sentence.split(" ");
-          sentence.innerHTML = words
-            .map(word => `<span class="word" onclick="readWord(this)">${word}</span>`)
-            .join(" ");
-        });
+      utterance.onend = () => {
+        words.forEach(word => word.classList.remove("highlight"));
       };
 
-      speech.lang = "en-US";
-      speech.rate = 1;
-      speech.pitch = 1;
-      window.speechSynthesis.speak(speech);
+      window.speechSynthesis.speak(utterance);
     }
 
     function readWord(element) {
       const word = element.innerText;
-      const speech = new SpeechSynthesisUtterance(word === "I" ? "eye" : word);
-      speech.lang = "en-US";
-      speech.rate = 1;
-      speech.pitch = 1;
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = "en-US";
+      utterance.rate = 1;
+
       element.classList.add("clicked-highlight");
-      window.speechSynthesis.speak(speech);
-      speech.onend = () => {
-        element.classList.remove("clicked-highlight");
-      };
+      utterance.onend = () => element.classList.remove("clicked-highlight");
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function readWordImage(word) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = "en-US";
+      utterance.rate = 1;
+
+      window.speechSynthesis.speak(utterance);
     }
   </script>
 </body>
